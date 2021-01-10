@@ -4,8 +4,8 @@ title: About Me
 permalink: /about/
 ---
 
-This website is powered by **[fastpages](https://github.com/fastai/fastpages)** [^1].
+I'm 31 as of 10.01.2021.
 
+I do know 3 foreign languages (English, Swedish, Chinese), that is not including my two native languages. I have been working for a large IT company for the past 10 years on various positions. A month ago I had a chance to switch drastically my field of work from PM and PdM to more AI and ML field.
 
-
-[^1]:a blogging platform that natively supports Jupyter notebooks in addition to other formats.
+So as you may guess I have accepted this challenge and began to study ML from scratch I would say. I had some experience on coding before, but it was so long ago so basically I had to start all over again.
