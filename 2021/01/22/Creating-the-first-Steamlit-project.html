@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Creating the first Streamlit project | byte5169 blog</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Creating the first Streamlit project" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="ML and DL learning blog." />
+<meta property="og:description" content="ML and DL learning blog." />
+<link rel="canonical" href="https://byte5169.github.io/byte-blog/2021/01/22/Creating-the-first-Steamlit-project.html" />
+<meta property="og:url" content="https://byte5169.github.io/byte-blog/2021/01/22/Creating-the-first-Steamlit-project.html" />
+<meta property="og:site_name" content="byte5169 blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-22T00:00:00-06:00" />
+<script type="application/ld+json">
+{"url":"https://byte5169.github.io/byte-blog/2021/01/22/Creating-the-first-Steamlit-project.html","@type":"BlogPosting","headline":"Creating the first Streamlit project","dateModified":"2021-01-22T00:00:00-06:00","datePublished":"2021-01-22T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://byte5169.github.io/byte-blog/2021/01/22/Creating-the-first-Steamlit-project.html"},"description":"ML and DL learning blog.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/byte-blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://byte5169.github.io/byte-blog/feed.xml" title="byte5169 blog" /><link rel="shortcut icon" type="image/x-icon" href="/byte-blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/byte-blog/">byte5169 blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/byte-blog/about/">About Me</a><a class="page-link" href="/byte-blog/search/">Search</a><a class="page-link" href="/byte-blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Creating the first Streamlit project</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-01-22T00:00:00-06:00" itemprop="datePublished">
+        Jan 22, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      3 min read
+    
+</span></p>
+
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/byte5169/byte-blog/tree/master/_notebooks/2021-01-22-Creating-the-first-Steamlit-project.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/byte-blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/byte5169/byte-blog/master?filepath=_notebooks%2F2021-01-22-Creating-the-first-Steamlit-project.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/byte-blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/byte5169/byte-blog/blob/master/_notebooks/2021-01-22-Creating-the-first-Steamlit-project.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/byte-blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-01-22-Creating-the-first-Steamlit-project.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="https://www.streamlit.io/">Streamlit</a> is a perfect resource to deploy and visualise your own data project.</p>
+<p>By default you can run your projects on a local machine using</p>
+<blockquote><p>streamlit run &lt;name_app.py&gt;</p>
+</blockquote>
+<p>If you want to share your project to the world you need to apply to <a href="https://www.share.streamlit.io/">share.streamlit.io</a>.
+Today I will share with you my dog classification app that I have released on streamlit.
+It can be found <a href="https://share.streamlit.io/byte5169/dogs_breed_repo/main/stream_app.py">here</a>.</p>
+<p>The basic idea is that you upload an image of a dog, or paste an url of an image of a dog, and the trained model predicts and outputs the scores for the breed of the dog.</p>
+<p>Let's start from importing everything we need for our dog classifier. Mainly it is fastai library that was used to train the model and also will be used to predict results, and streamlit itself.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
+
+<span class="kn">from</span> <span class="nn">fastai.vision.all</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">fastai.vision.widgets</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Next we will create different variables that will be used across all web-app.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">st</span><span class="o">.</span><span class="n">set_page_config</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s2">&quot;centered&quot;</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">()</span>
+
+<span class="c1"># importing model loader</span>
+<span class="n">learn_inf</span> <span class="o">=</span> <span class="n">load_learner</span><span class="p">(</span><span class="s1">&#39;models/dogs_breed_standford_V2_20_01.pkl&#39;</span><span class="p">,</span> <span class="n">cpu</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># image that will be used as header logo for our app</span>
+<span class="n">header</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;logo.jpg&#39;</span><span class="p">)</span>
+
+<span class="c1"># setting header width equal to page width</span>
+<span class="n">st</span><span class="o">.</span><span class="n">image</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">use_column_width</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Next we will put in the description of our page. Inside method <code>write</code> you can use markdown, that is very handy!</p>
+<p><img src="/byte-blog/images/copied_from_nb/./images/streamlit_header.png" alt="" /></p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2"># A simple dog breed classifier!</span>
+
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Model that predicts one of the 120 dog breeds. </span><span class="se">\n</span><span class="s2"></span>
+<span class="s2">Data used for model training was taken from Kaggle&#39;s [Standford Dogs dataset](</span>
+<span class="s2">https://www.kaggle.com/jwyang91/dog-breed-classification-using-fastai/)</span>
+<span class="s2">***</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we will create our upload widget and field to paste url.
+I really didn't like how it looked one on another (upload widget and url field)
+and decided to break the page in to two columns for that</p>
+<p><img src="/byte-blog/images/copied_from_nb/./images/streamlit_columns.png" alt="" /></p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">col1</span><span class="p">,</span> <span class="n">col2</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">beta_columns</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># creating upload widget and setting types of files we&#39;d like to see here</span>
+<span class="n">upload_img</span> <span class="o">=</span> <span class="n">col1</span><span class="o">.</span><span class="n">file_uploader</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="s1">&#39;jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;jpeg&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Upload here to predict from image&#39;</span><span class="p">)</span>
+
+<span class="c1"># creating url paste field</span>
+<span class="n">url_img</span> <span class="o">=</span> <span class="n">col2</span><span class="o">.</span><span class="n">text_input</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;or enter url here:&#39;</span><span class="p">)</span>
+
+<span class="c1"># creating button under url field that will trigger the prediction</span>
+<span class="n">but</span> <span class="o">=</span> <span class="n">col2</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Press to predict from url&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>After we will crate a few functions that will do the conversion of images and the predictions.</p>
+<p>Please read the comments inside functions for more details.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">predict_dog</span><span class="p">(</span><span class="n">dog_image</span><span class="p">):</span>
+    <span class="c1"># take an image and convert it to tensor</span>
+    <span class="n">img_t</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">dog_image</span><span class="p">)</span>
+    <span class="c1"># get predictions</span>
+    <span class="n">pred</span><span class="p">,</span> <span class="n">pred_idx</span><span class="p">,</span> <span class="n">probs</span> <span class="o">=</span> <span class="n">learn_inf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">img_t</span><span class="p">)</span>
+    <span class="c1"># apply some basic formatting to results</span>
+    <span class="n">pred</span> <span class="o">=</span> <span class="n">pred</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+    <span class="c1"># converting probabilities to presents</span>
+    <span class="n">probs</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">((</span><span class="n">probs</span><span class="p">[</span><span class="n">pred_idx</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">),</span> <span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; %&#39;</span>
+    <span class="k">return</span> <span class="n">pred</span><span class="p">,</span> <span class="n">probs</span>
+
+<span class="c1"># function that outputs results to the web-page, we pass here image directly</span>
+<span class="k">def</span> <span class="nf">render_result</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
+    <span class="c1"># storing returns from &#39;predict_dog&#39; function</span>
+    <span class="n">the_dog</span> <span class="o">=</span> <span class="n">predict_dog</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+    <span class="c1"># create text areas to display results</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Prediction: </span><span class="si">{</span><span class="n">the_dog</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Probability: </span><span class="si">{</span><span class="n">the_dog</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="c1"># output the uploaded image/url image in shape 128x128 to user</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">image</span><span class="p">(</span><span class="n">source</span><span class="o">.</span><span class="n">to_thumb</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">))</span>
+
+<span class="c1"># function that converts url to actual image that we can work with</span>
+<span class="k">def</span> <span class="nf">fetch_url_image</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="c1"># receive url</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="c1"># open image</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">img</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now this is the main block for upload widget.</p>
+<p>We need to check if there is an actual something that was uploaded into upload widget, and if there is something we want to output results.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">if</span> <span class="n">upload_img</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">render_result</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">upload_img</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And here is the main code block for the url block that fetches data,
+predicts the breed and outputs the results. We wrap it into try/except block incase something goes wrong.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">but</span><span class="p">:</span>
+        <span class="n">img_to_pred</span> <span class="o">=</span> <span class="n">fetch_url_image</span><span class="p">(</span><span class="n">url_img</span><span class="p">)</span>
+        <span class="n">predict_dog</span><span class="p">(</span><span class="n">img_to_pred</span><span class="p">)</span>
+        <span class="n">render_result</span><span class="p">(</span><span class="n">img_to_pred</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Unexpected error:&quot;</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Before upload app we need not to forget about requirements.txt file in the repo, it will tell streamlit what libraries are used.</p>
+
+<pre><code>streamlit==0.74.1
+fastai&gt;=2</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="PS">PS<a class="anchor-link" href="#PS"> </a></h3><p>I do understand that the code is not perfect and probably it can be done in much more elegant ways especially function blocks and logic behind them,
+but that is where my current skill level of Python and ML currently is.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="byte5169/byte-blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/byte-blog/2021/01/22/Creating-the-first-Steamlit-project.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/byte-blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/byte-blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/byte-blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>ML and DL learning blog.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/byte5169" title="byte5169"><svg class="svg-icon grey"><use xlink:href="/byte-blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/hlopotnoe_delze" title="hlopotnoe_delze"><svg class="svg-icon grey"><use xlink:href="/byte-blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
